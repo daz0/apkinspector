@@ -1155,6 +1155,7 @@ class startQT(QMainWindow, Ui_mainWindow):
 
 
 if __name__ == "__main__":
+    print sys.argv
     app= QApplication(sys.argv)
     myapp = startQT()
     myapp.show()
