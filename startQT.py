@@ -505,7 +505,8 @@ class startQT(QMainWindow, Ui_mainWindow):
             index = 0
             for m in methodlist:
                 # build a gloal dir from classname+methodname path to method obj
-                self.path2method[classname + m._name + str(index)] = m
+                ### ZW - self.path2method[classname + m._name + str(index)] = m
+                self.path2method[classname + m.name + str(index)] = m
                 index = index + 1
                 methodname = self.CL.get_methodname(m)
                 childMethod = QTreeWidgetItem(child)
@@ -1155,7 +1156,6 @@ class startQT(QMainWindow, Ui_mainWindow):
 
 
 if __name__ == "__main__":
-    print sys.argv
     app= QApplication(sys.argv)
     myapp = startQT()
     myapp.show()

@@ -7,22 +7,35 @@ else:
 	sys.path.append(sys.path[0]+"/androguard/")
 	PATH_INSTALL = sys.path[0]+"/androguard"
 
-sys.path.append(PATH_INSTALL + "./")
-sys.path.append(PATH_INSTALL + "/core")
-sys.path.append(PATH_INSTALL + "/core/bytecodes")
-sys.path.append(PATH_INSTALL + "/core/predicates")
-sys.path.append(PATH_INSTALL + "/core/analysis")
-sys.path.append(PATH_INSTALL + "/core/vm")
-sys.path.append(PATH_INSTALL + "/core/wm")
-sys.path.append(PATH_INSTALL + "/core/protection")
-sys.path.append(PATH_INSTALL + "/classification")
+print sys.path
+
+sys.path.append(PATH_INSTALL + "./androguard/")
+sys.path.append(PATH_INSTALL + "/androguard/core")
+sys.path.append(PATH_INSTALL + "/androguard/core/bytecodes")
+sys.path.append(PATH_INSTALL + "/androguard/core/predicates")	### not present in new AG
+sys.path.append(PATH_INSTALL + "/androguard/core/analysis")
+sys.path.append(PATH_INSTALL + "/androguard/core/vm")
+sys.path.append(PATH_INSTALL + "/androguard/core/wm")	### not present in new AG
+sys.path.append(PATH_INSTALL + "/core/protection")	### not present in new AG
+sys.path.append(PATH_INSTALL + "/classification")	### not present in new AG
  
-import androguard, analysis, androlyze
+### ZW - import androguard, analysis, androlyze
+import androguard, androlyze, analysis
 import bytecode
 
 from dvm import *
+## ZW - from analysis import VMAnalysis
 
+print "print the sys.path again......"
+print sys.path
 
+print dir(DalvikVMFormat)
+print dir(analysis)
+print analysis.__package__
+print analysis.__path__
+print analysis.__file__
+print analysis.__doc__
+print analysis.__builtins__
 
 class CLASS:
     apk = None
@@ -112,8 +125,9 @@ class CLASS:
                 bc = code.get_bc()
                 idx = 0
                 lineNum = 1
-                for i in bc.get():
+                for i in bc.get_instructions():
                     line = i.show_buff(idx)
+                    print "ZW " + line
                     if line.find("invoke-") >= 0:
                         index = line.index("[meth@")
                         method = str(line[index:])
@@ -152,3 +166,4 @@ class CLASS:
         file.close
         Global.endmethod = invokedMethod
         return methodInvokeList
+

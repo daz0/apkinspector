@@ -9,7 +9,8 @@ from startQT import SYSPATH
 # return 1: success ; return 0: fail
 def callAPKtool(filename):
     outputPath = SYSPATH + "/temp/ApktoolOutput"
-    cmd = "apktool d -d -f " + filename + " " + outputPath
+    ## cmd = "apktool d -d -f " + filename + " " + outputPath
+    cmd = "apktool d -f " + filename + " " + outputPath
     if os.system(cmd) !=0:
         return  0
     else:

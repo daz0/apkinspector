@@ -21,8 +21,21 @@ class MyThread(QThread):
         if not Global.APK.isVaildAPK():
             self.progress.step = 599900
         else:
+
+	    import analysis.analysis
+            print "print the sys.path in MyThread......"
+            print sys.path
+	    print dir(analysis)
+	    print analysis.__package__
+	    print analysis.__path__
+	    print analysis.__file__
+	    print analysis.__builtins__
+
+	    print dir(analysis.analysis)
+	    from analysis.analysis import VMAnalysis
+
             Global.VM = DalvikVMFormat(Global.APK.getDex())
-            Global.VMX = analysis.VMAnalysis(Global.VM)
+            Global.VMX = VMAnalysis(Global.VM)
         
             if self.progress.step <= 500000:
                 self.progress.step = 500000
