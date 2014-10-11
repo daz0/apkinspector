@@ -1448,6 +1448,9 @@ class PathP:
   def get_access_flag(self):
     return self.access_flag
 
+  def get_method(self):
+      method = cm.get_method_ref(self.dst_idx)
+      
   def get_dst(self, cm):
     method = cm.get_method_ref(self.dst_idx)
     return method.get_class_name(), method.get_name(), method.get_descriptor()

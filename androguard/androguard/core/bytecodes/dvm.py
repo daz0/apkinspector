@@ -6214,7 +6214,7 @@ class DCode:
         # it is possible to a cache for instructions (avoid a new disasm)
         if self.cached_instructions:
           for i in self.cached_instructions:
-            yield i
+              yield i
 
         else:
           if self.rcache >= 5:

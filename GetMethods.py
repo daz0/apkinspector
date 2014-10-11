@@ -92,12 +92,15 @@ class CLASS:
     def show_path(self, paths):
         accessPathList = []
         for path in paths:
-            if isinstance(path,analysis.PathP):
-                if path.get_access_flag() == analysis.TAINTED_PACKAGE_CALL:
-                    accessPath = ("%s %s %s (@%s-0x%x)  --->  %s %s %s") % (path.get_method().get_class_name(), path.get_method().get_name(), \
-                                                                     path.get_method().get_descriptor(), path.get_bb().get_name(), path.get_bb().start + path.get_idx(), \
-                                                                     path.get_class_name(), path.get_name(), path.get_descriptor())
-                    
+            if isinstance(path,analysis.analysis.PathP):
+                if path.get_access_flag() == analysis.analysis.TAINTED_PACKAGE_CALL:
+                    ## accessPath = ("%s %s %s (@%s-0x%x)  --->  %s %s %s") % (path.get_method().get_class_name(), path.get_method().get_name(), \
+                    ##                                                 path.get_method().get_descriptor(), path.get_bb().get_name(), path.get_bb().start + path.get_idx(), \
+                    ##                                                 path.get_class_name(), path.get_name(), path.get_descriptor())
+                    a1, a2, a3 = path.get_src(self.vm.get_class_manager())
+                    b1, b2, b3 = path.get_dst(self.vm.get_class_manager())
+                    accessPath = ("%s %s %s --->  %s %s %s") % (a1, a2, a3, b1, b2, b3)
+																			
                     accessPathList.append(accessPath)
             
         return accessPathList
@@ -126,35 +129,39 @@ class CLASS:
                 idx = 0
                 lineNum = 1
                 for i in bc.get_instructions():
-                    line = i.show_buff(idx)
+                    ## line = i.show_buff(idx)
+                    line = i.get_name() + " " + i.show_buff(idx)
                     print "ZW " + line
                     if line.find("invoke-") >= 0:
-                        index = line.index("[meth@")
-                        method = str(line[index:])
-                        method2 = method.split(" ")                        
+						invokedMethod = i.show_buff(idx)
+						methodInvokeList.append(invokingMethod +" ---> " + invokedMethod + "^Line:"+str(lineNum)+"  Offset:"+"0x%x" % idx)
+                    	
+##                        index = line.index("[meth@")
+##                        method = str(line[index:])
+##                        method2 = method.split(" ")                        
 
-                        # set the class
-                        ClassStartIndex = index + len(method2[0]) + len(method2[1]) + 2
-                        className = line[ClassStartIndex : ClassStartIndex + len(method2[2])]
+##                        # set the class
+##                        ClassStartIndex = index + len(method2[0]) + len(method2[1]) + 2
+##                        className = line[ClassStartIndex : ClassStartIndex + len(method2[2])]
+##                        
+##                        # set the return type
+##                        ReturnStartIndex = index + method.rindex(")") + 2
+##                        returnType = line[ReturnStartIndex : ReturnStartIndex+len(method2[-2])]
+##                        
+##                        # set the method name 
+##                        NameStartIndex = index + method.rindex(" ") + 1
+##                        methodName = line[NameStartIndex : NameStartIndex + len(method2[-1]) - 1]
                         
-                        # set the return type
-                        ReturnStartIndex = index + method.rindex(")") + 2
-                        returnType = line[ReturnStartIndex : ReturnStartIndex+len(method2[-2])]
+##                        # set the parameter name
+##                        ParameterStartIndex = index + method.index("(")
+##                        ParameterEndIndex = index + method.rindex(")") + 1
+##                        parameterName = line[ParameterStartIndex : ParameterEndIndex]
                         
-                        # set the method name 
-                        NameStartIndex = index + method.rindex(" ") + 1
-                        methodName = line[NameStartIndex : NameStartIndex + len(method2[-1]) - 1]
+##                        # set the descriptor name
+##                        descriptorName = parameterName +returnType
                         
-                        # set the parameter name
-                        ParameterStartIndex = index + method.index("(")
-                        ParameterEndIndex = index + method.rindex(")") + 1
-                        parameterName = line[ParameterStartIndex : ParameterEndIndex]
-                        
-                        # set the descriptor name
-                        descriptorName = parameterName +returnType
-                        
-                        invokedMethod = className + " " +descriptorName+ "," + methodName
-                        methodInvokeList.append(invokingMethod +" ---> " + invokedMethod + "^Line:"+str(lineNum)+"  Offset:"+"0x%x" % idx)
+##                        invokedMethod = className + " " +descriptorName+ "," + methodName
+##                        methodInvokeList.append(invokingMethod +" ---> " + invokedMethod + "^Line:"+str(lineNum)+"  Offset:"+"0x%x" % idx)
                         
                     lineNum += 1
                     idx += i.get_length() 
