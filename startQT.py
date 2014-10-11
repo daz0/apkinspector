@@ -908,10 +908,11 @@ class startQT(QMainWindow, Ui_mainWindow):
             for api in APILocationList:
                 print "ZW --- API --- " + api
                 li = api.split(" ---> ")
-                print li[0]
                 APIName = li[1]
-                methodName = li[0][:li[0].index(" (@")]
-                where = li[0][li[0].rindex("("):]
+                ## methodName = li[0][:li[0].index(" (@")]
+                ## where = "li[0][li[0].rindex("("):]"
+                methodName = li[0]
+                where = "TBD"
                 permissionContent += "API: " + APIName + "\n"
                 permissionContent += "Method: " + methodName + "\n"
                 permissionContent += "Where: " + where + "\n\n"
