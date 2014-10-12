@@ -158,6 +158,34 @@ def PrettyShow(m_a, basic_blocks, notes={}):
 
         print_fct("\n")
 
+## Added by ZW to be compatible with ARE apkinspector
+def method2dotStr( mx ) :
+    """
+
+    """
+    buff = ""
+    for i in mx.basic_blocks.get() :
+        val = "green"
+        if len(i.childs) > 1 :
+            val = "red"
+        elif len(i.childs) == 1 :
+            val = "blue"
+
+        for j in i.childs :
+            buff += "\"%s\" -> \"%s\" [color=\"%s\"];\n" % ( i.get_name(), j[-1].get_name(), val )
+            if val == "red" :
+                val = "green"
+
+        idx = i.start
+        label = ""
+        ## for ins in i.ins :
+        for ins in i.get_instructions() :
+            label += "%x %s\l" % (idx, ins.show_buff(idx))
+            idx += ins.get_length()
+
+        buff +=  "\"%s\" [color=\"lightgray\", label=\"%s\"]\n" % (i.get_name(), label)
+    return buff
+
 
 def method2dot(mx, colors={}):
     """
