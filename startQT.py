@@ -537,24 +537,6 @@ class startQT(QMainWindow, Ui_mainWindow):
           else:
               self.plainTextEdit_dalvik.setPlainText("")
         
-          if Global.CONFIG["CFG"] == 1:
-              self.Tab_CFG(method)
-              self.tabWidget.setCurrentIndex(0)
-          else:
-              print "1"
- #             self.Graph.scene.clear()
-
-         
-          #yuan display the call graph
-     
-              
-          if Global.CONFIG["CallIn"] == 1 or Global.CONFIG["CallOut"] == 1:
-           
-
-              self.Tab_CallInOut(method)
-          else:
-              self.textEdit_call.setText("")
-            
           if Global.CONFIG["Smali"] == 1:
             print "enter show smali"
             if self.apktool.successFlag == 1:
@@ -566,6 +548,22 @@ class startQT(QMainWindow, Ui_mainWindow):
               self.Tab_Bytecode(method)
           else:
               self.plainTextEdit_bytecode.setPlainText("")
+
+
+          if Global.CONFIG["CFG"] == 1:
+              self.Tab_CFG(method)
+              self.tabWidget.setCurrentIndex(0)
+          else:
+              print "1"
+              
+          #yuan display the call graph
+             
+          if Global.CONFIG["CallIn"] == 1 or Global.CONFIG["CallOut"] == 1:
+              self.Tab_CallInOut(method)
+          else:
+              self.textEdit_call.setText("")
+
+ #             self.Graph.scene.clear()
 
     def locateMethod(self, item, index):
       """
@@ -648,9 +646,9 @@ class startQT(QMainWindow, Ui_mainWindow):
         elif not self.plainTextEdit_dalvik.method2NewCodes.has_key(method):
             bc = code.get_bc()
             idx = 0
-            for i in bc.get():
+            for i in bc.get_instructions():
                 dalvikContent += "0x%x" % idx + " "
-                dalvikContent += i.show_buff(idx) + "\n"
+                dalvikContent += i.get_name() + " " + i.show_buff(idx) + "\n"
                 idx += i.get_length()   
             self.plainTextEdit_dalvik.setPlainText(dalvikContent)
         # if the current method' dalvik codes have new renamed codes, then get the new codes  
@@ -713,9 +711,10 @@ class startQT(QMainWindow, Ui_mainWindow):
         else:
             bc = code.get_bc()
             idx = 0
-            for i in bc.get():
+            for i in bc.get_instructions():
                 bytecode += "0x%x" % idx + " "
                 raw = i.get_raw()
+                print "raw is - " + raw
                 c = binascii.hexlify(raw)
                 raw = ""
                 while c:
