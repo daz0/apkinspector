@@ -1,0 +1,30 @@
+"go4root-BB@0x0" [label="0 const/4 v3 , [#+ 1] , {1}
+2 iget-object v1 , v4 , [field@ 112 Lcom/corner23/android/universalandroot/UniversalAndroot; Landro\id/widget/TextView; tv_msg]
+6 if-eqz v1 , [+ 10]
+", pos="600,270", width="8.08", height="0.50", _draw_="S 6 -filled c 9 -lightgray C 9 -lightgray P 4 891 288 309 288 309 252 891 252 ", _ldraw_="F 8.000000 7 -Courier c 5 -black T 317 276 -1 122 27 -0 const/4 v3 , [#+ 1] , {1} F 8.000000 7 -Courier c 5 -black T 317 267 -1 \567 126 -2 iget-object v1 , v4 , [field@ 112 Lcom/corner23/android/universalandroot/UniversalAndroot; Landroid/widget/TextView; \tv_msg] F 8.000000 7 -Courier c 5 -black T 317 258 -1 90 20 -6 if-eqz v1 , [+ 10] "
+"go4root-BB@0xa" [label="a iget-object v1 , v4 , [field@ 112 Lcom/corner23/android/universalandroot/UniversalAndroot; Landroid/widget/TextView; tv_msg]
+\e const v2 , [#+ 17] , [#+ 32517] , {1.7678766824e+38}
+14 invoke-virtual v1 , v2 , [meth@ 172 Landroid/widget/TextView; (I) V s\etText]
+", pos="441,198", width="8.08", height="0.50", _draw_="S 6 -filled c 9 -lightgray C 9 -lightgray P 4 732 216 150 216 150 180 732 180 ", _ldraw_="F 8.000000 7 -Courier c 5 -black T 158 204 -1 567 126 -a iget-object v1 , v4 , [field@ 112 Lcom/corner23/android/universalandroo\t/UniversalAndroot; Landroid/widget/TextView; tv_msg] F 8.000000 7 -Courier c 5 -black T 158 195 -1 243 54 -e const v2 , [#+ 17]\ , [#+ 32517] , {1.7678766824e+38} F 8.000000 7 -Courier c 5 -black T 158 186 -1 356 79 -14 invoke-virtual v1 , v2 , [meth@ 172 \Landroid/widget/TextView; (I) V setText] "
+"go4root-BB@0x1a" [label="1a iget-object v1 , v4 , [field@ 108 Lcom/corner23/android/universalandroot/UniversalAndroot; Landroid/widget/Spinner; spinner]\
+1e invoke-virtual v1 , [meth@ 166 Landroid/widget/Spinner; () I getSelectedItemPosition]
+24 move-result v1
+26 invoke-direct v\4 , v1 , [meth@ 296 Lcom/corner23/android/universalandroot/UniversalAndroot; (I) V setSuResID]
+2c invoke-direct v4 , [meth@ 276\ Lcom/corner23/android/universalandroot/UniversalAndroot; () V disableButtons]
+32 new-instance v0 , [type@ 97 Lcom/corner23/and\roid/universalandroot/UniversalAndroot$prepareExploidTask;]
+36 const/4 v1 , [#+ 0] , {0}
+38 invoke-direct v0 , v4 , v1 , [meth\@ 202 Lcom/corner23/android/universalandroot/UniversalAndroot$prepareExploidTask; (Lcom/corner23/android/universalandroot/Univer\salAndroot; Lcom/corner23/android/universalandroot/UniversalAndroot$prepareExploidTask;) V <init>]
+3e new-array v1 , v3 , [type\@ 280 [Ljava/lang/Boolean;]
+42 const/4 v2 , [#+ 0] , {0}
+44 invoke-static v3 , [meth@ 779 Ljava/lang/Boolean; (Z) Ljava/lang/B\oolean; valueOf]
+4a move-result-object v3
+4c aput-object v3 , v1 , v2
+50 invoke-virtual v0 , v1 , [meth@ 205 Lcom/corner23/an\droid/universalandroot/UniversalAndroot$prepareExploidTask; ([Ljava/lang/Object;) Landroid/os/AsyncTask; execute]
+56 return-voi\d 
+", pos="600,72", width="16.67", height="1.99", _draw_="S 6 -filled c 9 -lightgray C 9 -lightgray P 4 1200 144 0 144 0 1 1200 1 ", _ldraw_="F 8.000000 7 -Courier c 5 -black T 8 132 -1 572 127 -1a iget-object v1 , v4 , [field@ 108 Lcom/corner23/android/universalandroot\/UniversalAndroot; Landroid/widget/Spinner; spinner] F 8.000000 7 -Courier c 5 -black T 8 123 -1 396 88 -1e invoke-virtual v1 , \[meth@ 166 Landroid/widget/Spinner; () I getSelectedItemPosition] F 8.000000 7 -Courier c 5 -black T 8 114 -1 77 17 -24 move-res\ult v1 F 8.000000 7 -Courier c 5 -black T 8 105 -1 504 112 -26 invoke-direct v4 , v1 , [meth@ 296 Lcom/corner23/android/universa
+androot/UniversalAndroot; (I) V setSuResID] F 8.000000 7 -Courier c 5 -black T 8 96 -1 495 110 -2c invoke-direct v4 , [meth@ 27\6 Lcom/corner23/android/universalandroot/UniversalAndroot; () V disableButtons] F 8.000000 7 -Courier c 5 -black T 8 87 -1 482 1\07 -32 new-instance v0 , [type@ 97 Lcom/corner23/android/universalandroot/UniversalAndroot$prepareExploidTask;] F 8.000000 7 -Co\urier c 5 -black T 8 78 -1 126 28 -36 const/4 v1 , [#+ 0] , {0} F 8.000000 7 -Courier c 5 -black T 8 69 -1 1184 263 -38 invoke-d\irect v0 , v4 , v1 , [meth@ 202 Lcom/corner23/android/universalandroot/UniversalAndroot$prepareExploidTask; (Lcom/corner23/andro\id/universalandroot/UniversalAndroot; Lcom/corner23/android/universalandroot/UniversalAndroot$prepareExploidTask;) V <init>] F 8\.000000 7 -Courier c 5 -black T 8 60 -1 248 55 -3e new-array v1 , v3 , [type@ 280 [Ljava/lang/Boolean;] F 8.000000 7 -Courier c \5 -black T 8 51 -1 126 28 -42 const/4 v2 , [#+ 0] , {0} F 8.000000 7 -Courier c 5 -black T 8 42 -1 383 85 -44 invoke-static v3 ,\ [meth@ 779 Ljava/lang/Boolean; (Z) Ljava/lang/Boolean; valueOf] F 8.000000 7 -Courier c 5 -black T 8 33 -1 108 24 -4a move-resu
+t-object v3 F 8.000000 7 -Courier c 5 -black T 8 24 -1 122 27 -4c aput-object v3 , v1 , v2 F 8.000000 7 -Courier c 5 -black T 8\ 15 -1 756 168 -50 invoke-virtual v0 , v1 , [meth@ 205 Lcom/corner23/android/universalandroot/UniversalAndroot$prepareExploidTas\k; ([Ljava/lang/Object;) Landroid/os/AsyncTask; execute] F 8.000000 7 -Courier c 5 -black T 8 6 -1 68 15 -56 return-void  "
+"go4root-BB@0x0" -> "go4root-BB@0xa" [color=red, pos="e,481,216 560,252 539,242 513,230 490,220", _draw_="c 3 -red B 4 560 252 539 242 513 230 490 220 ", _hdraw_="S 5 -solid S 15 -setlinewidth(1) c 3 -red C 3 -red P 3 492 217 481 216 489 223 "
+"go4root-BB@0x0" -> "go4root-BB@0x1a" [color=green, pos="e,694,144 647,252 688,236 741,216 741,216 741,216 741,180 741,180 741,180 724,167 702,150", _draw_="c 5 -green B 10 647 252 688 236 741 216 741 216 741 216 741 180 741 180 741 180 724 167 702 150 ", _hdraw_="S 5 -solid S 15 -setlinewidth(1) c 5 -green C 5 -green P 3 704 147 694 144 700 153 "
+"go4root-BB@0xa" -> "go4root-BB@0x1a" [color=blue, pos="e,510,144 464,180 474,172 488,161 502,150", _draw_="c 4 -blue B 4 464 180 474 172 488 161 502 150 ", _hdraw_="S 5 -solid S 15 -setlinewidth(1) c 4 -blue C 4 -blue P 3 504 153 510 144 500 147 "
+
