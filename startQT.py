@@ -558,10 +558,10 @@ class startQT(QMainWindow, Ui_mainWindow):
               
           #yuan display the call graph
              
-          ##if Global.CONFIG["CallIn"] == 1 or Global.CONFIG["CallOut"] == 1:
-          ##    self.Tab_CallInOut(method)
-          ##else:
-          ##    self.textEdit_call.setText("")
+          if Global.CONFIG["CallIn"] == 1 or Global.CONFIG["CallOut"] == 1:
+              print "1" ## self.Tab_CallInOut(method)
+          else:
+              self.textEdit_call.setText("")
 
  #             self.Graph.scene.clear()
 

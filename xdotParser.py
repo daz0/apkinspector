@@ -200,8 +200,9 @@ class XDot:
 		file.write("\n")
         file.close()
         for i in parselist:
-            if i.find("->") == -1 and i != '':
-
+	    print "zzzzz ~~~ in parselist - " + i
+            if i.find(" -> ") == -1 and i != '':
+		print "zzzzz ~~~ potential node - " + i
                 start = i.index("label=") + 7
                 end = i[start:].index("\"") + start
                 # label is the content of the node
@@ -226,8 +227,9 @@ class XDot:
                 node.setHint(label)
                 nodeList.append(node)
 
-            ### elif i != '':
-            elif i == 'daz0':	### To temporarily work-around this code block
+            elif i != '':
+            ### elif i == 'daz0':	### To temporarily work-around this code block
+		print "zzzzz ~~~ potential list - " + i
                 i = i.replace("\\", "")
                 print "ZZZZZ - " + i
                 color = i[i.index("color=")+6:i.index(", pos")]
