@@ -180,7 +180,7 @@ def method2dotStr( mx ) :
         label = ""
         ## for ins in i.ins :
         for ins in i.get_instructions() :
-            label += "%x %s\l" % (idx, ins.show_buff(idx))
+            label += "%x %s\l" % (idx, ins.get_name() + " " + ins.show_buff(idx))
             idx += ins.get_length()
 
         buff +=  "\"%s\" [color=\"lightgray\", label=\"%s\"]\n" % (i.get_name(), label)

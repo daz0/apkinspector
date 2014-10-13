@@ -47,7 +47,7 @@ class XDot:
         self.buff += "graph [bgcolor=white];\n"
         self.buff += "node [color=red, style=filled shape=box fontname=\"Courier\" fontsize=\"8\"];\n"
         self.buff += "splines=ortho"
-        self.buff += bytecode.method2dot(self.vmx.get_method(self.method))
+        self.buff += bytecode.method2dotStr(self.vmx.get_method(self.method))
         self.buff += "}"
         d = pydot.graph_from_dot_data(self.buff)
         if d:
@@ -182,7 +182,8 @@ class XDot:
             return  [[0, 0], nodeList, linkList]
             
         # turn the String type to the Float type
-        [pagesize[0], pagesize[1]] = [string.atof(pagesize[0]), string.atof(pagesize[1])]
+        ### [pagesize[0], pagesize[1]] = [float(pagesize[0]), float(pagesize[1])]
+        [pagesize[0], pagesize[1]] = [float(pagesize[0]), float(pagesize[1])]
 
         # In parseStr, we can get all information about each node and link
         parseStr = self.xdot[self.xdot[end:].index("];")+ end + 2 : len(self.xdot)-2]
@@ -193,8 +194,10 @@ class XDot:
         parseStr = parseStr.replace("\\l", "\n")
         
         parselist = parseStr.split("];")
-        file = open("parselistmethod.txt",'w')
-        file.write("%s" % parselist)
+        file = open("parselistmethod.txt",'w')	### ZW: need to understand the format of this file....
+	for p in parselist:
+        	file.write("%s" % p)
+		file.write("\n")
         file.close()
         for i in parselist:
             if i.find("->") == -1 and i != '':
@@ -211,10 +214,10 @@ class XDot:
                 points = i[start:end]
                 points.strip()
                 points = points.split(" ")
-                width = string.atof(points[0]) - string.atof(points[2])
-                height = string.atof(points[3]) - string.atof(points[5])
-                point_x = string.atof(points[2])
-                point_y = self.transform(string.atof(points[3]), pagesize[1])
+                width = float(points[0]) - float(points[2])
+                height = float(points[3]) - float(points[5])
+                point_x = float(points[2])
+                point_y = self.transform(float(points[3]), pagesize[1])
                 # this point is the left-top point
                 point = [point_x, point_y]
                 
@@ -223,9 +226,10 @@ class XDot:
                 node.setHint(label)
                 nodeList.append(node)
 
-            elif i != '':
+            ### elif i != '':
+            elif i == 'daz0':	### To temporarily work-around this code block
                 i = i.replace("\\", "")
-                
+                print "ZZZZZ - " + i
                 color = i[i.index("color=")+6:i.index(", pos")]
                 path = i[i.index("pos=\"e,")+7:i.index("\", _draw_=")]
                 path = path.replace(",", " ")
@@ -235,18 +239,18 @@ class XDot:
                 
                 for j in range(0, len(path)):
                     if j % 2 == 1:
-                        path[j] = self.transform(string.atof(path[j]), pagesize[1])
+                        path[j] = self.transform(float(path[j]), pagesize[1])
                     else:
-                        path[j] = string.atof(path[j])
+                        path[j] = float(path[j])
                     
                 arrow = i[i.rindex("P 3 ")+4: i.rindex(" \"")]
                 arrow = arrow.split(" ")
                 
                 for j in range(0, len(arrow)):
                     if j % 2 ==1:
-                        arrow[j] = self.transform(string.atof(arrow[j]), pagesize[1])
+                        arrow[j] = self.transform(float(arrow[j]), pagesize[1])
                     else:
-                        arrow[j] = string.atof(arrow[j])
+                        arrow[j] = float(arrow[j])
                 
 
                 link = Link()
@@ -271,7 +275,7 @@ class XDot:
             return  [[0, 0], nodeList, linkList]
             
         # turn the String type to the Float type
-        [pagesize[0], pagesize[1]] = [string.atof(pagesize[0]), string.atof(pagesize[1])]
+        [pagesize[0], pagesize[1]] = [float(pagesize[0]), float(pagesize[1])]
 
         # In parseStr, we can get all information about each node and link
         parseStr = self.xdot[self.xdot[end:].index("];")+ end + 2 : len(self.xdot)-2]
@@ -307,10 +311,10 @@ class XDot:
                   points = i[start:end]
                   points.strip()
                   points = points.split(" ")
-                  width = string.atof(points[0]) - string.atof(points[2])
-                  height = string.atof(points[3]) - string.atof(points[5])
-                  point_x = string.atof(points[2])
-                  point_y = self.transform(string.atof(points[3]), pagesize[1])
+                  width = float(points[0]) - float(points[2])
+                  height = float(points[3]) - float(points[5])
+                  point_x = float(points[2])
+                  point_y = self.transform(float(points[3]), pagesize[1])
                 # this point is the left-top point
                   point = [point_x, point_y]
                 except:
@@ -338,9 +342,9 @@ class XDot:
                 
                 for j in range(0, len(path)):
                     if j % 2 == 1:
-                        path[j] = self.transform(string.atof(path[j]), pagesize[1])
+                        path[j] = self.transform(float(path[j]), pagesize[1])
                     else:
-                        path[j] = string.atof(path[j])
+                        path[j] = float(path[j])
                 try :               
                     arrow = i[i.rindex("P 3 ")+4: i.rindex(" \"")]
                     arrow = arrow.split(" ")
@@ -349,9 +353,9 @@ class XDot:
 
                 for j in range(0, len(arrow)):
                     if j % 2 ==1:
-                        arrow[j] = self.transform(string.atof(arrow[j]), pagesize[1])
+                        arrow[j] = self.transform(float(arrow[j]), pagesize[1])
                     else:
-                        arrow[j] = string.atof(arrow[j])
+                        arrow[j] = float(arrow[j])
             
 
                 link = Link()
