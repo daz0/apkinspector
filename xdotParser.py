@@ -292,7 +292,7 @@ class XDot:
         file.write("%s" % parselist)
         file.close()
         for i in parselist:
-            if i.find("->") == -1 and i != '':
+            if i.find(" -> ") == -1 and i != '':
                 try:
                   start = i.index("label=") + 7
  #               start = i.find("label=") + 7
